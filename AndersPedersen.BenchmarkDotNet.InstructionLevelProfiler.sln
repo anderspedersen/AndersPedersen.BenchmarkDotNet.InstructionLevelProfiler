@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Andersedersen.BenchmarkDotNet.InstructionLevelProfiler", "AndersPedersen.BenchmarkDotNet.InstructionLevelProfiler\AndersPedersen.BenchmarkDotNet.InstructionLevelProfiler.csproj", "{87DED2B9-F035-472F-A1BE-38C1BE54E6E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{D8F78897-7F12-4AB5-962C-E2AD17ED987F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87DED2B9-F035-472F-A1BE-38C1BE54E6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DED2B9-F035-472F-A1BE-38C1BE54E6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DED2B9-F035-472F-A1BE-38C1BE54E6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DED2B9-F035-472F-A1BE-38C1BE54E6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8F78897-7F12-4AB5-962C-E2AD17ED987F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8F78897-7F12-4AB5-962C-E2AD17ED987F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8F78897-7F12-4AB5-962C-E2AD17ED987F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8F78897-7F12-4AB5-962C-E2AD17ED987F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
