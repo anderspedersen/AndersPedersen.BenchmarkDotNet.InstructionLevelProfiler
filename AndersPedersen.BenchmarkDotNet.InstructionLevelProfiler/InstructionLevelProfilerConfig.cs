@@ -3,11 +3,11 @@ namespace AndersPedersen.BenchmarkDotNet.InstructionLevelProfiler;
 internal class InstructionLevelProfilerConfig
 {
     public bool PerformExtraBenchmarksRun { get; }
-    public int MaxRecursionDepth { get; }
+    public int MaxCallDepth { get; }
 
-    public InstructionLevelProfilerConfig(bool performExtraBenchmarksRun, int maxRecursionDepth)
+    public InstructionLevelProfilerConfig(bool performExtraBenchmarksRun, int maxCallDepth)
     {
         PerformExtraBenchmarksRun = performExtraBenchmarksRun;
-        MaxRecursionDepth = maxRecursionDepth;
+        MaxCallDepth = maxCallDepth;
     }
 }

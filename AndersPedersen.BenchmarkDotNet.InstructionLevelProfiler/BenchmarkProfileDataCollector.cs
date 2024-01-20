@@ -90,11 +90,11 @@ internal class BenchmarkProfileDataCollector
         _session?.Dispose();
     }
 
-    public void BuildString(StringBuilder sb, int maxRecursionDepth)
+    public void BuildString(StringBuilder sb, int maxCallDepth)
     {
         if (_dataCollected)
         {
-            _pd.BuildString(sb, maxRecursionDepth);
+            _pd.BuildString(sb, maxCallDepth);
         }
         else
         {

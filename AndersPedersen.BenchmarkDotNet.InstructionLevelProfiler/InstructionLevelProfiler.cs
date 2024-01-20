@@ -47,7 +47,7 @@ internal class InstructionLevelProfiler : IDiagnoser
                 _sb.Clear();
                 try
                 {
-                    _session.BuildString(_sb, _config.MaxRecursionDepth);
+                    _session.BuildString(_sb, _config.MaxCallDepth);
                 }
                 catch (Exception e)
                 {

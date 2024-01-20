@@ -47,7 +47,7 @@ internal class ProfileData
         return callStack.Slice(i);
     }
 
-    public void BuildString(StringBuilder sb, int maxRecursionDepth)
+    public void BuildString(StringBuilder sb, int maxCallDepth)
     {
         if (_rootMethodSamples is null)
         {
@@ -56,7 +56,7 @@ internal class ProfileData
         }
 
         using var disasm = new ProcessDisassembler(_pid);
-        _rootMethodSamples.BuildString(sb, disasm, _samples, maxRecursionDepth);
+        _rootMethodSamples.BuildString(sb, disasm, _samples, maxCallDepth);
     }
 
     private class MethodSamples
@@ -100,14 +100,14 @@ internal class ProfileData
             return stackFrameData.Address < 0xFFFF000000000000;
         }
 
-        public void BuildString(StringBuilder sb, ProcessDisassembler disasm, long prevsamples, int maxRecursionDepth, int spaces = 0)
+        public void BuildString(StringBuilder sb, ProcessDisassembler disasm, long prevsamples, int maxCallDepth, int depth = 0)
         {
             if (!_addressCount.Any())
                 return;
             
             if (_method?.GetName() is not "")
             {
-                AddSpace(spaces, sb);
+                AddSpace(depth, sb);
                 sb.Append(_method?.GetName())
                     .Append(" : ")
                     .Append(_samples)
@@ -117,16 +117,16 @@ internal class ProfileData
                 sb.AppendLine();
             }
 
-            if (spaces > maxRecursionDepth)
+            if (depth > maxCallDepth)
             {
-                AddSpace(spaces, sb);
-                sb.Append("Max recursion depth of ").Append(maxRecursionDepth).AppendLine(" reached.");
+                AddSpace(depth, sb);
+                sb.Append("Max recursion depth of ").Append(maxCallDepth).AppendLine(" reached.");
                 return;
             }
 
             foreach (var (firstInstruction, lastInstruction) in GetAddressPairs(_addressCount, 100))
             {
-                BuildStringForAddressRange(sb, disasm, spaces, firstInstruction, lastInstruction, maxRecursionDepth);
+                BuildStringForAddressRange(sb, disasm, depth, firstInstruction, lastInstruction, maxCallDepth);
             }
         }
 
@@ -150,7 +150,7 @@ internal class ProfileData
             yield return (firstInstruction, lastInstruction);
         }
 
-        private void BuildStringForAddressRange(StringBuilder sb, ProcessDisassembler disasm, int spaces,
+        private void BuildStringForAddressRange(StringBuilder sb, ProcessDisassembler disasm, int depth,
             ulong firstInstruction, ulong lastInstruction, int maxRecursionDepth)
         {
             var instructions = disasm.GetInstructions(firstInstruction, lastInstruction);
@@ -162,11 +162,11 @@ internal class ProfileData
                 
                 if (_calls.TryGetValue(address, out var nextMethod))
                 {
-                    nextMethod.BuildString(sb, disasm, _samples, maxRecursionDepth, spaces + 1);
+                    nextMethod.BuildString(sb, disasm, _samples, maxRecursionDepth, depth + 1);
                 }
 
                 _addressCount.TryGetValue(address, out var samples);
-                AddSpace(spaces, sb);
+                AddSpace(depth, sb);
                 sb.Append(address.ToString("x16"))
                     .Append(" ")
                     .Append(instruction)
