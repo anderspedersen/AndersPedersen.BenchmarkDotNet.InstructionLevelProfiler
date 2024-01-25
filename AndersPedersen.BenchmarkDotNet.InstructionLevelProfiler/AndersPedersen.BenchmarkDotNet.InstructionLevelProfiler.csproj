@@ -5,7 +5,19 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>12</LangVersion>
+        
+        <!-- NuGet -->
+        <Title>AndersPedersen.BenchmarkDotNet.InstructionLevelProfiler</Title>
+        <Authors>Anders Pedersen</Authors>
+        <Description>BenchmarkDotNet diagnoser for capturing profile data at a CPU instruction level (Only works on Windows)</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageProjectUrl>https://github.com/anderspedersen/AndersPedersen.BenchmarkDotNet.InstructionLevelProfiler</PackageProjectUrl>
     </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\LICENSE" Pack="true" PackagePath="LICENSE" />
+        <None Include="..\README.md" Pack="true" PackagePath="README.md" />
+    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="BenchmarkDotNet" Version="0.13.11" />
