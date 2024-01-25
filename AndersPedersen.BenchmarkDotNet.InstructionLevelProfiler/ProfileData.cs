@@ -138,7 +138,7 @@ internal class ProfileData
             foreach (var address in addresses)
             {
 
-                if (address.Key - firstInstruction > maxDistance)
+                if (address.Key - lastInstruction > maxDistance)
                 {
                     yield return (firstInstruction, lastInstruction);
                     firstInstruction = address.Key;
